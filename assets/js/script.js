@@ -26,7 +26,7 @@ var Obj = {
 	in: {
 		effect: 'fadeInUp',//animate.css の中にある採用したい動きのクラス名
 		delayScale: 1,// 遅延時間の指数
-		delay: 100,// 文字ごとの遅延時間
+		delay: 80,// 文字ごとの遅延時間
 		sync: false,// アニメーションをすべての文字に同時適用するかどうか
 		shuffle: true,// 文字表示がランダムな順に表示されるかどうか
 	},
@@ -122,7 +122,7 @@ particlesJS("particles-js",{
 		},
 		"move":{
 			"enable":true,
-			"speed":6,/*この数値を小さくするとゆっくりな動きになる*/
+			"speed":3,/*この数値を小さくするとゆっくりな動きになる*/
 			"direction":"none",/*方向指定なし*/
 			"random":false,/*動きはランダムにしない*/
 			"straight":false,/*動きをとどめない*/
@@ -154,7 +154,7 @@ particlesJS("particles-js",{
 
 
 /*===========================================================*/
-/*  波（1つ重なりあり）*/
+/*  波  */
 /*===========================================================*/
 
 var unit = 100,
@@ -176,7 +176,7 @@ function init() {
     colorList = [];
     // canvas1個めの色指定
     canvasList.push(document.getElementById("waveCanvas"));
-    colorList.push(['#FCF038', '#FD9B06','#9C4307', '#F5120B','#F628A4', '#C41CF6','#09C1D9', '#34C88D',]);//重ねる波の色設定
+    colorList.push(['#FCF038', '#FD9B06','#9C4307', '#F5120B','#F628A4', '#C41CF6','#09C1D9', '#34C88D']);//重ねる波の色設定
 
 	// 各キャンバスの初期化
 for(var canvasIndex in canvasList) {
@@ -197,7 +197,7 @@ function update() {
         draw(canvas, colorList[canvasIndex]);
     }
     // 共通の描画情報の更新
-    info.seconds = info.seconds + .014;
+    info.seconds = info.seconds + .007;
     info.t = info.seconds*Math.PI;
     // 自身の再起呼び出し
     setTimeout(update, 35);

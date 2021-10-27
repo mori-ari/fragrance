@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="香水,メンズ,男性,フレグランス" />
+    <meta name="description" content="たった5分の診断であなたに合う香水が見つかる男性向け香水診断サービスのログインページです。今なら抽選で診断結果の香水をプレゼント！">
+    <meta property="og:url" content="●●●●●●●●" />
+    <meta property="og:title" content="ログイン | メンズ香水診断「FRAGLIFE」" />
+    <meta property="og:description" content="たった5分の診断であなたに合う香水が見つかる男性向け香水診断サービスのログインページです。今なら抽選で診断結果の香水をプレゼント！" />
+    <meta property="og:image" content="●●●●●●●●" />
+    <meta property="og:site_name" content="メンズ香水診断「FRAGLIFE」" />
+       
+    <title>ログイン | メンズ香水診断「FRAGLIFE」</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" id="themesid">
+    <!-- Social login button CSS -->
+    <link href="assets/css/bootstrap-social.css" rel="stylesheet" id="themesid">
+    <!-- GoogleFont -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@700&family=Changa:wght@300&family=Gemunu+Libre:wght@800&family=Lalezar&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+    <link href="assets/css/reset.css" rel="stylesheet">
+    <link href="assets/css/base.css" rel="stylesheet" type="text/css" />
+     <!-- firebase ui -->
+     <script src="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.js"></script>
+     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css"/>
+</head>
+     
+        
+<body>
+
+
+    <div id="particles-js"></div>
+    <div id="wrapper">
+        <!-- Header -->
+        <header id="#header">
+            <h1><div><a href="./" class="sitename">FRAGLIFE</a></div></h1>
+        </header>
+
+
+        <main>          
+            <section class="margin20">
+                <h1 class="h1 randomAnime">診断結果を見る</h1>
+                <div class="fadeIn">
+                    <p class="txt">診断結果を見るためには、ソーシャルアカウントでログインしてください。</p>
+                    <div class="campaign">抽選で診断結果の香水をプレゼント！</div>
+                    <div id="firebaseui-auth-container"></div>
+                    <div id="loader">Loading...</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <!-- <div id="page-top"><a href="#header"></a></div> -->
+            <small>&copy; FRAGLIFE</small>
+        </footer>
+    </div>
+
+    <canvas id="waveCanvas"></canvas>
+
+
+<!--js-->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<!-- <script src="assets/js/jquery.easing.min.js"></script> -->
+<script src="assets/js/classie.js"></script>
+<script src="assets/js/cbpAnimatedHeader.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="assets/js/jqBootstrapValidation.js"></script>
+<script src="assets/js/contact_me.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<!-- <script src="assets/js/agency.js"></script> -->
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
+
+<script>
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+    apiKey: "AIzaSyC67lVPz3Tz1l6FMVHl0orvstQoXLrH65Q",
+    authDomain: "perfume-adcbc.firebaseapp.com",
+    projectId: "perfume-adcbc",
+    storageBucket: "perfume-adcbc.appspot.com",
+    messagingSenderId: "324915504065",
+    appId: "1:324915504065:web:eb40ff29eacab8af190540",
+    measurementId: "G-X4YF02V9KS"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+</script>
+
+<script type="text/javascript">
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+    var uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          return true;
+        },
+        uiShown: function() {
+          document.getElementById('loader').style.display = 'none';
+        }
+      },
+      signInFlow: 'popup',
+      signInSuccessUrl: 'output.html',
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+      ],
+    };
+    ui.start('#firebaseui-auth-container', uiConfig);
+</script>
+ 
+<!--テキストがランダムに出現-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js"></script>
+<script src="assets/js/jquery.lettering.js"></script>
+
+<script src="assets/js/script.js"></script>
+
+
+</body>
+</html>
